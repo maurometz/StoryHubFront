@@ -15,10 +15,13 @@
   --text-small: 16px;
 
   /* colors */
+  --color-white: #f3f3f3;
   --color-black: #000;
   --color-gray: #636363;
   --color-gray-lightly: #e8e8ea;
   --color-gray-bluey: #d1d5db;
-  --color-blue-lightly: #2189eb;
-  --color-white: #f3f3f3;
+  --color-purple: #4b26f4;
+  --color-blue: #0e7ae1;
+  --color-blue-lightly: #4abff6;
+  --color-blue-darkly: #1e2837;
 }

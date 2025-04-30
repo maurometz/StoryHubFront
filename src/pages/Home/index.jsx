@@ -1,11 +1,11 @@
-import { Button, Header } from "../../components";
+import { Button, Footer, Header } from "../../components";
 
 export const Home = () => {
   return (
     <>
       <Header />
-      <main className="w-full h-screen">
-        <section className="h-[70vh] flex justify-center items-center flex-col">
+      <main className="flex flex-col">
+        <section className="h-[80vh] flex justify-center items-center flex-col">
           <div className="text-center mb-4">
             <h1 className="text-large font-medium mb-4">
               Where Stories Come to Life
@@ -66,6 +66,7 @@ export const Home = () => {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 };
