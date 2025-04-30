@@ -5,7 +5,7 @@ const links = [
   { name: "Categories", href: "/categories" },
 ];
 
-export default function Header() {
+export const Header = () => {
   return (
     <div className="flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 border-b-gray-300 font-inter">
       <h1 className="font-bold text-[20px]">StoryHub</h1>
@@ -103,4 +103,4 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};

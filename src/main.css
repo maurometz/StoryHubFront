@@ -6,8 +6,19 @@
 }
 
 @theme {
+  /* fonts */
   --font-inter: "Inter", sans-serif;
 
-  --color-blue-light: #2189eb;
+  /* text sizes */
+  --text-large: 40px;
+  --text-medium: 18px;
+  --text-small: 16px;
+
+  /* colors */
+  --color-black: #000;
+  --color-gray: #636363;
+  --color-gray-lightly: #e8e8ea;
+  --color-gray-bluey: #d1d5db;
+  --color-blue-lightly: #2189eb;
   --color-white: #f3f3f3;
 }
