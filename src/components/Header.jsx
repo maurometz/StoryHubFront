@@ -7,7 +7,7 @@ const links = [
 
 export const Header = () => {
   return (
-    <div className="flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 border-b-gray-300 font-inter">
+    <header className="fixed w-full flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 bg-white border-b-gray-300">
       <h1 className="font-bold text-[20px]">StoryHub</h1>
       <nav>
         <ul className="flex flex-row gap-5 text-[16px]">
@@ -101,6 +101,6 @@ export const Header = () => {
           </svg>
         </span>
       </div>
-    </div>
+    </header>
   );
 };
