@@ -1,24 +1,26 @@
+import { Link } from "react-router-dom";
+
 const links = [
-  { name: "Home", href: "/" },
-  { name: "Writers", href: "/writers" },
-  { name: "Stories", href: "/stories" },
-  { name: "Categories", href: "/categories" },
+  { name: "Home", pathname: "/" },
+  { name: "Writers", pathname: "/writers" },
+  { name: "Stories", pathname: "/stories" },
+  { name: "Categories", pathname: "/categories" },
 ];
 
 export const Header = () => {
   return (
-    <header className="fixed w-full flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 bg-white border-b-gray-300">
+    <header className="w-full flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 bg-white border-b-gray-300">
       <h1 className="font-bold text-[20px]">StoryHub</h1>
       <nav>
         <ul className="flex flex-row gap-5 text-[16px]">
           {links.map((link) => (
             <li key={link.name}>
-              <a
+              <Link
+                to={link.pathname}
                 className="cursor-default transition-all duration-160 hover:font-bold"
-                href="#"
               >
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -26,15 +28,15 @@ export const Header = () => {
       <div className="flex flex-row gap-5">
         <span className="relative">
           <svg
-            width="30px"
-            height="30px"
+            width="24px"
+            height="24px"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V20.9425C20 22.6114 18.0766 23.5462 16.7644 22.5152L12 18.7717L7.23564 22.5152C5.92338 23.5462 4 22.6114 4 20.9425V4ZM7 3C6.44772 3 6 3.44772 6 4V20.9425L12 16.2283L18 20.9425V4C18 3.44772 17.5523 3 17 3H7Z"
               fill="#0F0F0F"
             />
@@ -45,28 +47,28 @@ export const Header = () => {
         </span>
         <span>
           <svg
-            width="30px"
-            height="30px"
+            width="24px"
+            height="24px"
             viewBox="0 0 20.00 20.00"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
             fill="#000000"
             stroke="#000000"
             transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
           >
             <g
               id="SVGRepo_bgCarrier"
-              stroke-width="0"
+              strokeWidth="0"
               transform="translate(0,0), scale(1)"
             />
 
             <g
               id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               stroke="#CCCCCC"
-              stroke-width="0.04"
+              strokeWidth="0.04"
             />
 
             <g id="SVGRepo_iconCarrier">
@@ -75,9 +77,9 @@ export const Header = () => {
               <desc>Created with Sketch.</desc> <defs> </defs>{" "}
               <g
                 id="Page-1"
-                stroke-width="0.0002"
+                strokeWidth="0.0002"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               >
                 {" "}
                 <g
