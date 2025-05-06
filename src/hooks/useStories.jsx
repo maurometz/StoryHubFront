@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getStories } from "../services/stories";
 
-export const useGetStories = (url) => {
+export const useGetStories = () => {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ export const useGetStories = (url) => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const data = await getStories(url);
+        const data = await getStories();
         setStories(data);
       } catch (err) {
         setError(err);
@@ -19,7 +19,7 @@ export const useGetStories = (url) => {
     };
 
     fetchStories();
-  }, [url]);
+  }, []);
 
   return { stories, loading, error };
 };
