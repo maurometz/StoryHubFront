@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const links = [
-  { name: "Home", href: "/" },
-  { name: "Writers", href: "/writers" },
-  { name: "Stories", href: "/stories" },
-  { name: "Categories", href: "/categories" },
+  { name: "Home", pathname: "/" },
+  { name: "Writers", pathname: "/writers" },
+  { name: "Stories", pathname: "/stories" },
+  { name: "Categories", pathname: "/categories" },
 ];
 
 export const Header = () => {
@@ -13,12 +15,12 @@ export const Header = () => {
         <ul className="flex flex-row gap-5 text-[16px]">
           {links.map((link) => (
             <li key={link.name}>
-              <a
+              <Link
+                to={link.pathname}
                 className="cursor-default transition-all duration-160 hover:font-bold"
-                href="#"
               >
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

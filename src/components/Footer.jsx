@@ -97,7 +97,7 @@ export const Footer = () => {
       </div>
       <div>
         <p className="text-gray-lightly">
-          &copy; 2023 StoryHub. All rights reserved.
+          &copy; 2025 StoryHub. All rights reserved.
         </p>
       </div>
     </footer>
