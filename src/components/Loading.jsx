@@ -7,7 +7,7 @@ export const LoadingSpinner = () => {
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backgroundColor: "rgba(243, 243, 243)",
         backdropFilter: "blur(5px)",
         display: "flex",
         justifyContent: "center",
