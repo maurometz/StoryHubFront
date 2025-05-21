@@ -12,16 +12,24 @@ export const Footer = () => {
           <h4 className="font-medium text-[15px] mb-4">Navigation</h4>
           <ul>
             <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Home</p>
+              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
+                Home
+              </p>
             </li>
             <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Writers</p>
+              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
+                Writers
+              </p>
             </li>
             <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Stories</p>
+              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
+                Stories
+              </p>
             </li>
             <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Categories</p>
+              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
+                Categories
+              </p>
             </li>
           </ul>
         </div>

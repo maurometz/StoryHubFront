@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const links = [
   { name: "Home", pathname: "/" },
-  { name: "Writers", pathname: "/writers" },
+  { name: "Writers", pathname: "#" },
   { name: "Stories", pathname: "/stories" },
-  { name: "Categories", pathname: "/categories" },
+  { name: "Categories", pathname: "#" },
 ];
 
 export const Header = () => {
