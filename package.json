@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "packageManager": "yarn@4.5.0",
+  "installConfig": {
+    "lockfile": true
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
