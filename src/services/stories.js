@@ -14,3 +14,18 @@ export const getStories = async () => {
     throw { message: err.message || "Unknown error occurred", status: null };
   }
 };
+
+export const createStory = async (storyData) => {
+  try {
+    const res = await axios.post("/api/stories", storyData);
+    return res.data;
+  } catch (err) {
+    if (err.response) {
+      throw {
+        message: "Failed to create story",
+        status: err.response.status,
+      };
+    }
+    throw { message: err.message || "Unknown error occurred", status: null };
+  }
+};
