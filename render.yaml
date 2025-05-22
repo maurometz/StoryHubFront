@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: storyhub-front
+    env: node
+    buildCommand: corepack enable && yarn install && yarn build
+    startCommand: yarn preview
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0 
