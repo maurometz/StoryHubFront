@@ -1,8 +1,18 @@
 import { Button, Footer, Header, LoadingSpinner } from "../../components";
 import { useGetStories } from "../../hooks/useStories";
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const { stories, error, loading } = useGetStories();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/stories');
+  };
+
+  const handleStoryClick = (storyId) => {
+    navigate(`/stories/${storyId}`);
+  };
 
   return (
     <>
@@ -31,7 +41,7 @@ export const Home = () => {
                   discover new worlds.
                 </p>
               </div>
-              <Button text="Start Writing" />
+              <Button text="Start Writing" onClick={handleClick} />
             </section>
             <section className="pb-10 pt-10 bg-gray-lightly">
               <div className="w-[90%] mx-auto">
@@ -44,7 +54,8 @@ export const Home = () => {
                     .map((story, i) => (
                       <div
                         key={i}
-                        className="bg-white shadow-md rounded-lg p-5 mt-4 mb-4 flex flex-col justify-between"
+                        onClick={() => handleStoryClick(story.id)}
+                        className="bg-white shadow-md rounded-lg p-5 mt-4 mb-4 flex flex-col justify-between cursor-pointer hover:shadow-lg transition-shadow duration-300"
                       >
                         <div>
                           <span className="w-full h-40 mb-4 flex justify-center items-center bg-gray-bluey rounded-lg overflow-hidden">
