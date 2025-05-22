@@ -61,7 +61,7 @@ export const Stories = () => {
 
   const handleCloseStory = () => {
     setExpandedId(null);
-    navigate('/stories');
+    navigate("/stories");
   };
 
   const renderParagraphs = (content) => {
@@ -120,7 +120,7 @@ export const Stories = () => {
                     return (
                       <li
                         key={story.id}
-                        className={`flex flex-col justify-between p-4 m-5 bg-white rounded shadow-md max-w-[365px] transition-all duration-300 z-10 ${
+                        className={`flex flex-col justify-between p-4 m-5 bg-white rounded shadow-md min-w-[365px] max-w-[365px] transition-all duration-300 z-10 ${
                           isExpanded
                             ? "fixed left-1/4 top-1/10 w-1/2 h-3/4 max-w-none max-h-none overflow-auto z-50"
                             : "hover:scale-105 cursor-pointer"
@@ -179,7 +179,10 @@ export const Stories = () => {
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="title"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Title
                     </label>
                     <input
@@ -193,7 +196,10 @@ export const Stories = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="author" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="author"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Author
                     </label>
                     <input
@@ -207,7 +213,10 @@ export const Stories = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="content"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Story Content
                     </label>
                     <textarea

@@ -4,7 +4,7 @@ const links = [
   { name: "Home", pathname: "/" },
   { name: "Writers", pathname: "/writers" },
   { name: "Stories", pathname: "/stories" },
-  { name: "Categories", pathname: "#" },
+  { name: "Categories", pathname: "/categories" },
 ];
 
 export const Footer = () => {
