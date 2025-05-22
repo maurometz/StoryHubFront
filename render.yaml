@@ -2,7 +2,7 @@ services:
   - type: web
     name: storyhub-front
     env: node
-    buildCommand: npm install -g yarn@4.5.0 && yarn install && yarn build
+    buildCommand: npm install -g yarn@4.5.0 && yarn install --no-frozen-lockfile && yarn build
     startCommand: yarn preview
     envVars:
       - key: NODE_VERSION
