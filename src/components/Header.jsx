@@ -17,7 +17,7 @@ export const Header = () => {
             <li key={link.name}>
               <Link
                 to={link.pathname}
-                className="cursor-default transition-all duration-160 hover:font-bold"
+                className="cursor-pointer transition-all duration-160 hover:font-bold"
               >
                 {link.name}
               </Link>

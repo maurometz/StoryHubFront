@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "https://storyhubapi-xy3q.onrender.com/",
         changeOrigin: true,
       },
     },

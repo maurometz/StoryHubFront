@@ -1,3 +1,12 @@
+import { Link } from "react-router-dom";
+
+const links = [
+  { name: "Home", pathname: "/" },
+  { name: "Writers", pathname: "#" },
+  { name: "Stories", pathname: "/stories" },
+  { name: "Categories", pathname: "#" },
+];
+
 export const Footer = () => {
   return (
     <footer className="bg-blue-darkly text-white py-10 px-4 flex flex-col items-center">
@@ -11,26 +20,14 @@ export const Footer = () => {
         <div>
           <h4 className="font-medium text-[15px] mb-4">Navigation</h4>
           <ul>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
-                Home
-              </p>
-            </li>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
-                Writers
-              </p>
-            </li>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
-                Stories
-              </p>
-            </li>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold">
-                Categories
-              </p>
-            </li>
+            {links.map((link) => (
+              <li
+                key={link.name}
+                className="text-[15px] text-gray-lightly mb-2 cursor-default transition-all duration-160 hover:font-bold"
+              >
+                <Link to={link.pathname}>{link.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>

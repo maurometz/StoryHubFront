@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoadingSpinner } from "../../components";
+import { Header, Footer, LoadingSpinner } from "../../components";
 import { useGetStories } from "../../hooks/useStories";
 
 export const Stories = () => {
@@ -28,7 +28,7 @@ export const Stories = () => {
   };
 
   return (
-    <main className="min-h-140 bg-gray-100">
+    <>
       {expandedId !== null && (
         <div
           className="fixed inset-0 bg-white-opaque z-40"
@@ -48,51 +48,59 @@ export const Stories = () => {
           <p className="text-[20px]">{error.message}</p>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center bg-gray-100 pt-8 pb-8">
-          <h1 className="text-4xl font-bold">Stories</h1>
-          <div className="w-[80%] mt-4">
-            <ul className="flex justify-center flex-wrap mt-4 relative">
-              {stories.map((story) => {
-                const isExpanded = expandedId === story.id;
-                return (
-                  <li
-                    key={story.id}
-                    className={`p-4 m-5 bg-white rounded shadow-md max-w-2xs transition-all duration-300 z-10 ${
-                      isExpanded
-                        ? "fixed left-1/4 top-1/10 w-1/2 h-3/4 max-w-none max-h-none overflow-auto z-50"
-                        : "hover:scale-105"
-                    }`}
-                    style={isExpanded ? { minWidth: 0, minHeight: 0 } : {}}
-                    onClick={() => setExpandedId(story.id)}
-                  >
-                    <h2 className="text-2xl font-semibold">{story.title}</h2>
-                    <div className="text-gray-700 mt-5">
-                      {isExpanded
-                        ? renderParagraphs(story.content)
-                        : story.content.length > 100
-                        ? `${story.content.slice(0, 80)}...`
-                        : story.content}
-                    </div>
-                    <p className="text-gray-500 mt-4">By {story.author}</p>
-                    {isExpanded && (
-                      <button
-                        className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-xl"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setExpandedId(null);
-                        }}
-                        aria-label="Close"
+        <>
+          <Header />
+          <main className="min-h-140 bg-gray-100">
+            <div className="flex flex-col items-center justify-center bg-gray-100 pt-8 pb-8">
+              <h1 className="text-4xl font-bold">Stories</h1>
+              <div className="w-[80%] mt-4">
+                <ul className="flex justify-start flex-wrap mt-4 relative">
+                  {stories.map((story) => {
+                    const isExpanded = expandedId === story.id;
+                    return (
+                      <li
+                        key={story.id}
+                        className={`p-4 m-5 bg-white rounded shadow-md max-w-[450px] transition-all duration-300 z-10 ${
+                          isExpanded
+                            ? "fixed left-1/4 top-1/10 w-1/2 h-3/4 max-w-none max-h-none overflow-auto z-50"
+                            : "hover:scale-105"
+                        }`}
+                        style={isExpanded ? { minWidth: 0, minHeight: 0 } : {}}
+                        onClick={() => setExpandedId(story.id)}
                       >
-                        &times;
-                      </button>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
+                        <h2 className="text-2xl font-semibold">
+                          {story.title}
+                        </h2>
+                        <div className="text-gray-700 mt-5">
+                          {isExpanded
+                            ? renderParagraphs(story.content)
+                            : story.content.length > 100
+                            ? `${story.content.slice(0, 80)}...`
+                            : story.content}
+                        </div>
+                        <p className="text-gray-500 mt-4">By {story.author}</p>
+                        {isExpanded && (
+                          <button
+                            className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-xl cursor-pointer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedId(null);
+                            }}
+                            aria-label="Close"
+                          >
+                            <div className="">&times;</div>
+                          </button>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </main>
+          <Footer />
+        </>
       )}
-    </main>
+    </>
   );
 };
