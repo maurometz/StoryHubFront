@@ -1,8 +1,8 @@
-import axios from "axios";
+import api from './api';
 
 export const getStories = async () => {
   try {
-    const res = await axios.get("/api/stories");
+    const res = await api.get("/api/stories");
     return res.data;
   } catch (err) {
     if (err.response) {
@@ -17,7 +17,7 @@ export const getStories = async () => {
 
 export const createStory = async (storyData) => {
   try {
-    const res = await axios.post("/api/stories", storyData);
+    const res = await api.post("/api/stories", storyData);
     return res.data;
   } catch (err) {
     if (err.response) {
