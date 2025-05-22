@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
@@ -8,8 +9,13 @@ const links = [
 ];
 
 export const Header = () => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [pressed, setPressed] = useState(false);
+
   return (
-    <header className="w-full flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 bg-white border-b-gray-300">
+    <header className="w-full flex justify-between items-center pt-5 pb-5 pl-8 pr-8 border-b-1 bg-white border-b-gray-300 fixed top-0 left-0 z-50">
       <h1 className="font-bold text-[20px]">StoryHub</h1>
       <nav>
         <ul className="flex flex-row gap-5 text-[16px]">
@@ -26,81 +32,295 @@ export const Header = () => {
         </ul>
       </nav>
       <div className="flex flex-row gap-5">
-        <span className="relative">
+        <span
+          className="relative cursor-pointer"
+          onClick={() => setIsBookmarked((prev) => !prev)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            transition:
+              "transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.22s",
+            transform: isHovered ? "scale(1.10) rotate(-2deg)" : "scale(1)",
+            boxShadow: isHovered
+              ? "0 6px 24px 0 rgba(250, 204, 21, 0.18), 0 2px 0 #fff inset"
+              : "0 2px 8px 0 rgba(0,0,0,0.10)",
+            filter: isHovered
+              ? "drop-shadow(0 2px 12px #fde68a)"
+              : isBookmarked
+              ? "drop-shadow(0 2px 8px #fde68a)"
+              : "none",
+            background: isHovered
+              ? "linear-gradient(135deg, #fffbe6 80%, #fef9c3 100%)"
+              : "none",
+            borderRadius: 12,
+            padding: 2,
+          }}
+          aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+        >
           <svg
-            width="24px"
-            height="24px"
-            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
             fill="none"
+            style={{
+              filter: isBookmarked
+                ? "drop-shadow(0 2px 8px #fde68a)"
+                : "drop-shadow(0 1px 2px #e5e7eb)",
+              transition: "filter 0.2s",
+              borderRadius: 8,
+            }}
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V20.9425C20 22.6114 18.0766 23.5462 16.7644 22.5152L12 18.7717L7.23564 22.5152C5.92338 23.5462 4 22.6114 4 20.9425V4ZM7 3C6.44772 3 6 3.44772 6 4V20.9425L12 16.2283L18 20.9425V4C18 3.44772 17.5523 3 17 3H7Z"
-              fill="#0F0F0F"
-            />
-          </svg>
-          {/* <div className="bg-blue-light rounded-full w-[.75em] h-[.75em] absolute top-[-5px] right-[-5px] text-center z-10">
-            <p className="text-white text-[8px] font-bold">1</p>
-          </div> */}
-        </span>
-        <span>
-          <svg
-            width="24px"
-            height="24px"
-            viewBox="0 0 20.00 20.00"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            fill="#000000"
-            stroke="#000000"
-            transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)"
-          >
-            <g
-              id="SVGRepo_bgCarrier"
-              strokeWidth="0"
-              transform="translate(0,0), scale(1)"
-            />
-
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              stroke="#CCCCCC"
-              strokeWidth="0.04"
-            />
-
-            <g id="SVGRepo_iconCarrier">
-              {" "}
-              <title>profile_round [#000000]</title>{" "}
-              <desc>Created with Sketch.</desc> <defs> </defs>{" "}
-              <g
-                id="Page-1"
-                strokeWidth="0.0002"
-                fill="none"
-                fillRule="evenodd"
+            <defs>
+              <radialGradient id="bookmark-bg-soft" cx="50%" cy="30%" r="80%">
+                <stop offset="0%" stopColor="#fffde4" />
+                <stop offset="100%" stopColor="#fef9c3" />
+              </radialGradient>
+              <linearGradient
+                id="bookmark-edge-soft"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
               >
-                {" "}
-                <g
-                  id="Dribbble-Light-Preview"
-                  transform="translate(-140.000000, -2159.000000)"
-                  fill="#000000"
-                >
-                  {" "}
-                  <g id="icons" transform="translate(56.000000, 160.000000)">
-                    {" "}
-                    <path
-                      d="M100.562548,2016.99998 L87.4381713,2016.99998 C86.7317804,2016.99998 86.2101535,2016.30298 86.4765813,2015.66198 C87.7127655,2012.69798 90.6169306,2010.99998 93.9998492,2010.99998 C97.3837885,2010.99998 100.287954,2012.69798 101.524138,2015.66198 C101.790566,2016.30298 101.268939,2016.99998 100.562548,2016.99998 M89.9166645,2004.99998 C89.9166645,2002.79398 91.7489936,2000.99998 93.9998492,2000.99998 C96.2517256,2000.99998 98.0830339,2002.79398 98.0830339,2004.99998 C98.0830339,2007.20598 96.2517256,2008.99998 93.9998492,2008.99998 C91.7489936,2008.99998 89.9166645,2007.20598 89.9166645,2004.99998 M103.955674,2016.63598 C103.213556,2013.27698 100.892265,2010.79798 97.837022,2009.67298 C99.4560048,2008.39598 100.400241,2006.33098 100.053171,2004.06998 C99.6509769,2001.44698 97.4235996,1999.34798 94.7348224,1999.04198 C91.0232075,1998.61898 87.8750721,2001.44898 87.8750721,2004.99998 C87.8750721,2006.88998 88.7692896,2008.57398 90.1636971,2009.67298 C87.1074334,2010.79798 84.7871636,2013.27698 84.044024,2016.63598 C83.7745338,2017.85698 84.7789973,2018.99998 86.0539717,2018.99998 L101.945727,2018.99998 C103.221722,2018.99998 104.226185,2017.85698 103.955674,2016.63598"
-                      id="profile_round-[#000000]"
-                    >
-                      {" "}
-                    </path>{" "}
-                  </g>{" "}
-                </g>{" "}
-              </g>{" "}
+                <stop offset="0%" stopColor="#fff" />
+                <stop offset="100%" stopColor="#fde68a" />
+              </linearGradient>
+              <radialGradient id="bookmark-glow" cx="50%" cy="80%" r="80%">
+                <stop offset="0%" stopColor="#fef9c3" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#fde68a" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <g>
+              {/* Soft shadow/glow */}
+              {isHovered && (
+                <ellipse
+                  cx="16"
+                  cy="28"
+                  rx="10"
+                  ry="3"
+                  fill="url(#bookmark-glow)"
+                  opacity="0.6"
+                />
+              )}
+              {/* Main bookmark shape */}
+              <path
+                d="M7 5c0-1.66 1.34-3 3-3h12c1.66 0 3 1.34 3 3v22.5c0 1.3-1.5 2.1-2.6 1.3L16 23.2l-6.4 5.6C8.5 29.6 7 28.8 7 27.5V5z"
+                fill={
+                  isBookmarked || isHovered ? "url(#bookmark-bg-soft)" : "#fff"
+                }
+                stroke="url(#bookmark-edge-soft)"
+                strokeWidth="1.2"
+                style={{
+                  filter:
+                    isBookmarked || isHovered
+                      ? "drop-shadow(0 2px 12px #fde68a)"
+                      : "drop-shadow(0 1px 2px #e5e7eb)",
+                  transition: "filter 0.2s",
+                }}
+              />
+              {/* Soft edge */}
+              <path
+                d="M16 23.2l-6.4 5.6C8.5 29.6 7 28.8 7 27.5V5c0-1.66 1.34-3 3-3h12c1.66 0 3 1.34 3 3v22.5c0 1.3-1.5 2.1-2.6 1.3L16 23.2z"
+                fill="none"
+                stroke="#fde68a"
+                strokeWidth="0.7"
+                opacity="0.5"
+              />
+              {/* Skeuomorphic shadow */}
+              <ellipse
+                cx="16"
+                cy="29.5"
+                rx="7"
+                ry="1.5"
+                fill="#fde68a"
+                opacity={isBookmarked || isHovered ? "0.18" : "0.10"}
+              />
+              {/* Shine */}
+              <path
+                d="M10 6.5c0.5-1 2-1.5 6-1.5s5.5 0.5 6 1.5"
+                stroke="#fff"
+                strokeWidth="0.8"
+                opacity="0.5"
+                strokeLinecap="round"
+              />
+              {/* Soft fill when bookmarked */}
+              {isBookmarked && (
+                <path
+                  d="M16 23.2l-6.4 5.6C8.5 29.6 7 28.8 7 27.5V5c0-1.66 1.34-3 3-3h12c1.66 0 3 1.34 3 3v22.5c0 1.3-1.5 2.1-2.6 1.3L16 23.2z"
+                  fill="#fde68a"
+                  fillOpacity="0.7"
+                  style={{
+                    filter: "blur(0.5px)",
+                  }}
+                />
+              )}
             </g>
           </svg>
+          {/* Paper curl effect */}
+          <span
+            style={{
+              position: "absolute",
+              right: 2,
+              bottom: 2,
+              width: 10,
+              height: 10,
+              borderBottomRightRadius: 8,
+              background: "linear-gradient(135deg, #fffbe6 60%, #fde68a 100%)",
+              boxShadow: isHovered ? "0 2px 8px #fde68a" : "0 1px 2px #fde68a",
+              opacity: isHovered ? 0.85 : 0.5,
+              pointerEvents: "none",
+              transition: "opacity 0.2s",
+              zIndex: 1,
+            }}
+          />
+        </span>
+        <span
+          className="relative cursor-pointer"
+          tabIndex={0}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => {
+            setHovered(false);
+            setPressed(false);
+          }}
+          onMouseDown={() => setPressed(true)}
+          onMouseUp={() => setPressed(false)}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 12,
+            padding: 2,
+            background: hovered
+              ? "linear-gradient(135deg, #e0f2fe 80%, #bae6fd 100%)"
+              : "linear-gradient(135deg, #f0f9ff 80%, #e0f2fe 100%)",
+            boxShadow: pressed
+              ? "0 2px 8px #60a5fa, 0 1px 2px #3b82f6"
+              : hovered
+              ? "0 4px 16px #60a5fa, 0 2px 4px #3b82f6"
+              : "0 1px 4px #60a5fa22, 0 1px 2px #3b82f622",
+            transform: pressed
+              ? "scale(0.95)"
+              : hovered
+              ? "scale(1.08)"
+              : "scale(1)",
+            transition:
+              "background 0.18s, box-shadow 0.18s, transform 0.12s cubic-bezier(.4,2,.6,1)",
+          }}
+          aria-label="User profile"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 32 32"
+            fill="none"
+            style={{
+              display: "block",
+              filter:
+                hovered || pressed
+                  ? "drop-shadow(0 2px 12px #60a5fa88)"
+                  : "drop-shadow(0 1px 2px #bae6fd)",
+              transition: "filter 0.18s",
+            }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <radialGradient id="user-bg" cx="50%" cy="40%" r="80%">
+                <stop offset="0%" stopColor="#e0f2fe" />
+                <stop offset="100%" stopColor="#60a5fa" />
+              </radialGradient>
+              <linearGradient id="user-edge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#fff" />
+                <stop offset="100%" stopColor="#3b82f6" />
+              </linearGradient>
+              <radialGradient id="user-glow" cx="50%" cy="80%" r="80%">
+                <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <g>
+              {/* Soft shadow/glow */}
+              {hovered && (
+                <ellipse
+                  cx="16"
+                  cy="28"
+                  rx="10"
+                  ry="3"
+                  fill="url(#user-glow)"
+                  opacity="0.5"
+                />
+              )}
+              {/* Head */}
+              <ellipse
+                cx="16"
+                cy="12"
+                rx="6"
+                ry="6"
+                fill="url(#user-bg)"
+                stroke="url(#user-edge)"
+                strokeWidth="1.2"
+                style={{
+                  filter:
+                    hovered || pressed
+                      ? "drop-shadow(0 2px 12px #60a5fa88)"
+                      : "drop-shadow(0 1px 2px #bae6fd)",
+                  transition: "filter 0.18s",
+                }}
+              />
+              {/* Body */}
+              <path
+                d="M8 25c0-4.418 5.372-7 8-7s8 2.582 8 7v2c0 1.104-.896 2-2 2H10c-1.104 0-2-.896-2-2v-2z"
+                fill="url(#user-bg)"
+                stroke="url(#user-edge)"
+                strokeWidth="1.2"
+                style={{
+                  filter:
+                    hovered || pressed
+                      ? "drop-shadow(0 2px 12px #60a5fa88)"
+                      : "drop-shadow(0 1px 2px #bae6fd)",
+                  transition: "filter 0.18s",
+                }}
+              />
+              {/* Shine */}
+              <ellipse
+                cx="16"
+                cy="10"
+                rx="3"
+                ry="1"
+                fill="#fff"
+                opacity="0.35"
+              />
+              {/* Soft fill when pressed */}
+              {pressed && (
+                <ellipse
+                  cx="16"
+                  cy="12"
+                  rx="6"
+                  ry="6"
+                  fill="#3b82f6"
+                  fillOpacity="0.18"
+                  style={{ filter: "blur(1px)" }}
+                />
+              )}
+            </g>
+          </svg>
+          {/* Paper curl effect */}
+          <span
+            style={{
+              position: "absolute",
+              right: 2,
+              bottom: 2,
+              width: 10,
+              height: 10,
+              borderBottomRightRadius: 8,
+              background: "linear-gradient(135deg, #e0f2fe 60%, #60a5fa 100%)",
+              boxShadow: hovered ? "0 2px 8px #60a5fa" : "0 1px 2px #60a5fa",
+              opacity: hovered ? 0.85 : 0.5,
+              pointerEvents: "none",
+              transition: "opacity 0.2s",
+              zIndex: 1,
+            }}
+          />
         </span>
       </div>
     </header>

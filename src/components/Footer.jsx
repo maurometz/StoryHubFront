@@ -30,20 +30,6 @@ export const Footer = () => {
             ))}
           </ul>
         </div>
-        <div>
-          <h4 className="font-medium text-[15px] mb-4">Legal</h4>
-          <ul>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Terms</p>
-            </li>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Privacy</p>
-            </li>
-            <li>
-              <p className="text-[15px] text-gray-lightly mb-2">Guidelines</p>
-            </li>
-          </ul>
-        </div>
         <div className="mr-[10em]">
           <h4 className="font-medium text-[15px] mb-4">Follow Us</h4>
           <p className="flex flex-row gap-2">

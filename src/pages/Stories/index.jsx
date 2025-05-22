@@ -50,7 +50,7 @@ export const Stories = () => {
       ) : (
         <>
           <Header />
-          <main className="min-h-140 bg-gray-100">
+          <main className="min-h-140 bg-gray-100 pt-30 pb-30">
             <div className="flex flex-col items-center justify-center bg-gray-100 pt-8 pb-8">
               <h1 className="text-4xl font-bold">Stories</h1>
               <div className="w-[80%] mt-4">
@@ -60,7 +60,7 @@ export const Stories = () => {
                     return (
                       <li
                         key={story.id}
-                        className={`p-4 m-5 bg-white rounded shadow-md max-w-[450px] transition-all duration-300 z-10 ${
+                        className={`flex flex-col justify-between p-4 m-5 bg-white rounded shadow-md max-w-[365px] transition-all duration-300 z-10 ${
                           isExpanded
                             ? "fixed left-1/4 top-1/10 w-1/2 h-3/4 max-w-none max-h-none overflow-auto z-50"
                             : "hover:scale-105"
@@ -68,17 +68,21 @@ export const Stories = () => {
                         style={isExpanded ? { minWidth: 0, minHeight: 0 } : {}}
                         onClick={() => setExpandedId(story.id)}
                       >
-                        <h2 className="text-2xl font-semibold">
-                          {story.title}
-                        </h2>
-                        <div className="text-gray-700 mt-5">
-                          {isExpanded
-                            ? renderParagraphs(story.content)
-                            : story.content.length > 100
-                            ? `${story.content.slice(0, 80)}...`
-                            : story.content}
+                        <div>
+                          <h2 className="text-[20px] font-semibold">
+                            {story.title}
+                          </h2>
+                          <div className="text-gray-700 mt-5">
+                            {isExpanded
+                              ? renderParagraphs(story.content)
+                              : story.content.length > 100
+                              ? `${story.content.slice(0, 80)}...`
+                              : story.content}
+                          </div>
                         </div>
-                        <p className="text-gray-500 mt-4">By {story.author}</p>
+                        <p className="text-gray-500 mt-4">
+                          By <span className="font-bold">{story.author}</span>
+                        </p>
                         {isExpanded && (
                           <button
                             className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-xl cursor-pointer"

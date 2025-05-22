@@ -1,6 +1,6 @@
 export const LoadingSpinner = () => {
   return (
-    <div className="w-[100vw] h-[100vw] bg-gray-100">
+    <div className="h-[100vw] bg-gray-100">
       <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center z-999">
         <svg
           xmlns="http://www.w3.org/2000/svg"
